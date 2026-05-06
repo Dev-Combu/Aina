@@ -1,22 +1,31 @@
-import 'package:aina/presentation/aina/aina.dart';
+import 'package:aina/app/router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(routerProvider);
+
+    return MaterialApp.router(
       title: 'Aina',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF86B082), // Soft pastel green
+          background: const Color(0xFFF9F6F0), // Warm beige
+        ),
+        useMaterial3: true,
+        fontFamily:
+            'Pretendard', // Assuming a clean font, can be omitted if not imported
       ),
-      home: const Aina(),
+      routerConfig: router,
     );
   }
 }
