@@ -37,7 +37,7 @@ class MainLayout extends StatelessWidget {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(30),
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
               child: Container(
                 height: 70,
                 color: Colors.white.withOpacity(0.5), // Liquid glass background
@@ -51,10 +51,16 @@ class MainLayout extends StatelessWidget {
                       onTap: () => _onTap(0),
                     ),
                     _buildNavItem(
-                      icon: Icons.settings_rounded,
+                      icon: Icons.calendar_month_rounded,
                       index: 1,
                       currentIndex: navigationShell.currentIndex,
                       onTap: () => _onTap(1),
+                    ),
+                    _buildNavItem(
+                      icon: Icons.settings_rounded,
+                      index: 2,
+                      currentIndex: navigationShell.currentIndex,
+                      onTap: () => _onTap(2),
                     ),
                   ],
                 ),
