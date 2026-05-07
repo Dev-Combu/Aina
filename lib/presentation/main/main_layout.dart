@@ -40,7 +40,7 @@ class MainLayout extends StatelessWidget {
               filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
               child: Container(
                 height: 70,
-                color: Colors.white.withOpacity(0.5), // Liquid glass background
+                color: Colors.white.withOpacity(0.3), // Made more transparent
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -92,7 +92,7 @@ class MainLayout extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
           color: isSelected
-              ? Colors.white.withOpacity(0.3)
+              ? Colors.white.withOpacity(0.1)
               : Colors.transparent,
           borderRadius: BorderRadius.circular(20),
         ),
