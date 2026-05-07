@@ -92,7 +92,7 @@ class MainLayout extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
         decoration: BoxDecoration(
           color: isSelected
-              ? Colors.white.withOpacity(0.5)
+              ? Colors.white.withOpacity(0.3)
               : Colors.transparent,
           borderRadius: BorderRadius.circular(20),
         ),
