@@ -1,7 +1,7 @@
+import 'package:aina/presentation/calendar/calendar_screen.dart';
 import 'package:aina/presentation/home/home_screen.dart';
 import 'package:aina/presentation/main/main_layout.dart';
 import 'package:aina/presentation/settings/settings_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -19,6 +19,14 @@ final routerProvider = Provider<GoRouter>((ref) {
               GoRoute(
                 path: '/home',
                 builder: (context, state) => const HomeScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/calendar',
+                builder: (context, state) => const CalendarScreen(),
               ),
             ],
           ),

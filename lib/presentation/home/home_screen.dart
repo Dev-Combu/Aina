@@ -1,19 +1,52 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFF9F6F0), // Warm beige
-      body: SafeArea(
-        bottom: false,
-        child: CustomScrollView(
-          slivers: [
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            pinned: true,
+            floating: true,
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            scrolledUnderElevation: 0,
+            centerTitle: true,
+            title: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  color: Colors.white.withOpacity(0.5),
+                  child: const Text(
+                    '나의 마음 나무',
+                    style: TextStyle(
+                      color: Color(0xFF4A4A4A),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24.0,
+                  vertical: 20.0,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -124,23 +157,25 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             SliverPadding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0).copyWith(bottom: 120),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 24.0,
+              ).copyWith(bottom: 120),
               sliver: SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    return _buildDiaryCard(
-                      date: '5월 ${10 - index}일',
-                      preview: '오늘 하루는 참 따뜻했다. 길을 걷다 예쁜 꽃을 발견해서 기분이 좋았다.',
-                      emotionIcon: index % 2 == 0 ? Icons.sentiment_very_satisfied : Icons.sentiment_satisfied,
-                      emotionColor: index % 2 == 0 ? const Color(0xFFFFD54F) : const Color(0xFF81C784),
-                    );
-                  },
-                  childCount: 3,
-                ),
+                delegate: SliverChildBuilderDelegate((context, index) {
+                  return _buildDiaryCard(
+                    date: '5월 ${10 - index}일',
+                    preview: '오늘 하루는 참 따뜻했다. 길을 걷다 예쁜 꽃을 발견해서 기분이 좋았다.',
+                    emotionIcon: index % 2 == 0
+                        ? Icons.sentiment_very_satisfied
+                        : Icons.sentiment_satisfied,
+                    emotionColor: index % 2 == 0
+                        ? const Color(0xFFFFD54F)
+                        : const Color(0xFF81C784),
+                  );
+                }, childCount: 3),
               ),
             ),
-          ],
-        ),
+        ],
       ),
     );
   }
@@ -179,11 +214,7 @@ class HomeScreen extends StatelessWidget {
                   color: Color(0xFF8A8A8A),
                 ),
               ),
-              Icon(
-                emotionIcon,
-                color: emotionColor,
-                size: 20,
-              ),
+              Icon(emotionIcon, color: emotionColor, size: 20),
             ],
           ),
           const SizedBox(height: 12),
