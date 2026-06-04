@@ -28,7 +28,7 @@ class MainLayout extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(0.1),
+                color: Colors.black.withOpacity(0.05),
                 blurRadius: 20,
                 offset: const Offset(0, 5),
               ),
@@ -40,7 +40,7 @@ class MainLayout extends StatelessWidget {
               filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
               child: Container(
                 height: 70,
-                color: Colors.white.withOpacity(0.3), // Made more transparent
+                color: Colors.white.withOpacity(0.1), // Made more transparent
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
