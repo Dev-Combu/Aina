@@ -26,6 +26,7 @@ class MainLayout extends StatelessWidget {
           margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
+            border: Border.all(color: Colors.black.withOpacity(0.05), width: 1),
             boxShadow: [
               BoxShadow(
                 color: Colors.black.withOpacity(0.05),

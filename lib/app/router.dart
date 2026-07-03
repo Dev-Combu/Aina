@@ -1,4 +1,5 @@
 import 'package:aina/presentation/calendar/calendar_screen.dart';
+import 'package:aina/presentation/home/CRUD/diary_write_sceen.dart';
 import 'package:aina/presentation/home/home_screen.dart';
 import 'package:aina/presentation/main/main_layout.dart';
 import 'package:aina/presentation/settings/settings_screen.dart';
@@ -39,6 +40,10 @@ final routerProvider = Provider<GoRouter>((ref) {
             ],
           ),
         ],
+      ),
+      GoRoute(
+        path: '/diary/write',
+        builder: (context, state) => const DiaryWriteScreen(),
       ),
     ],
   );

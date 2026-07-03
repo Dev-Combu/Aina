@@ -1,4 +1,5 @@
 import 'package:aina/app/router.dart';
+import 'package:aina/app/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -29,15 +30,8 @@ class MyApp extends ConsumerWidget {
     return MaterialApp.router(
       title: 'Aina',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF86B082), // Soft pastel green
-          background: const Color(0xFFF9F6F0), // Warm beige
-        ),
-        useMaterial3: true,
-        fontFamily:
-            'Pretendard', // Assuming a clean font, can be omitted if not imported
-      ),
+      theme: AppTheme.lightTheme, // Use the custom light theme
+      themeMode: ThemeMode.light, // Force light mode to keep warm beige colors
       routerConfig: router,
     );
   }
