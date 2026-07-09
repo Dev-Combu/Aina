@@ -7,16 +7,14 @@ part of 'diary.dart';
 // **************************************************************************
 
 _$DiaryImpl _$$DiaryImplFromJson(Map<String, dynamic> json) => _$DiaryImpl(
-  id: json['id'] as String?,
-  title: json['title'] as String,
+  id: (json['id'] as num?)?.toInt(),
   content: json['content'] as String,
-  date: DateTime.parse(json['date'] as String),
+  createdAt: DateTime.parse(json['created_at'] as String),
 );
 
 Map<String, dynamic> _$$DiaryImplToJson(_$DiaryImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'title': instance.title,
       'content': instance.content,
-      'date': instance.date.toIso8601String(),
+      'created_at': instance.createdAt.toIso8601String(),
     };

@@ -21,11 +21,10 @@ Diary _$DiaryFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Diary {
-  // ID가 자동 생성(UUID 또는 BigInt)된다면 Nullable 혹은 선언을 포함해줍니다.
-  String? get id => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
-  DateTime get date => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
+  DateTime get createdAt => throw _privateConstructorUsedError;
 
   /// Serializes this Diary to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,7 +40,11 @@ abstract class $DiaryCopyWith<$Res> {
   factory $DiaryCopyWith(Diary value, $Res Function(Diary) then) =
       _$DiaryCopyWithImpl<$Res, Diary>;
   @useResult
-  $Res call({String? id, String title, String content, DateTime date});
+  $Res call({
+    int? id,
+    String content,
+    @JsonKey(name: 'created_at') DateTime createdAt,
+  });
 }
 
 /// @nodoc
@@ -60,27 +63,22 @@ class _$DiaryCopyWithImpl<$Res, $Val extends Diary>
   @override
   $Res call({
     Object? id = freezed,
-    Object? title = null,
     Object? content = null,
-    Object? date = null,
+    Object? createdAt = null,
   }) {
     return _then(
       _value.copyWith(
             id: freezed == id
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            title: null == title
-                ? _value.title
-                : title // ignore: cast_nullable_to_non_nullable
-                      as String,
+                      as int?,
             content: null == content
                 ? _value.content
                 : content // ignore: cast_nullable_to_non_nullable
                       as String,
-            date: null == date
-                ? _value.date
-                : date // ignore: cast_nullable_to_non_nullable
+            createdAt: null == createdAt
+                ? _value.createdAt
+                : createdAt // ignore: cast_nullable_to_non_nullable
                       as DateTime,
           )
           as $Val,
@@ -96,7 +94,11 @@ abstract class _$$DiaryImplCopyWith<$Res> implements $DiaryCopyWith<$Res> {
   ) = __$$DiaryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? id, String title, String content, DateTime date});
+  $Res call({
+    int? id,
+    String content,
+    @JsonKey(name: 'created_at') DateTime createdAt,
+  });
 }
 
 /// @nodoc
@@ -114,27 +116,22 @@ class __$$DiaryImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? title = null,
     Object? content = null,
-    Object? date = null,
+    Object? createdAt = null,
   }) {
     return _then(
       _$DiaryImpl(
         id: freezed == id
             ? _value.id
             : id // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        title: null == title
-            ? _value.title
-            : title // ignore: cast_nullable_to_non_nullable
-                  as String,
+                  as int?,
         content: null == content
             ? _value.content
             : content // ignore: cast_nullable_to_non_nullable
                   as String,
-        date: null == date
-            ? _value.date
-            : date // ignore: cast_nullable_to_non_nullable
+        createdAt: null == createdAt
+            ? _value.createdAt
+            : createdAt // ignore: cast_nullable_to_non_nullable
                   as DateTime,
       ),
     );
@@ -146,27 +143,24 @@ class __$$DiaryImplCopyWithImpl<$Res>
 class _$DiaryImpl implements _Diary {
   const _$DiaryImpl({
     this.id,
-    required this.title,
     required this.content,
-    required this.date,
+    @JsonKey(name: 'created_at') required this.createdAt,
   });
 
   factory _$DiaryImpl.fromJson(Map<String, dynamic> json) =>
       _$$DiaryImplFromJson(json);
 
-  // ID가 자동 생성(UUID 또는 BigInt)된다면 Nullable 혹은 선언을 포함해줍니다.
   @override
-  final String? id;
-  @override
-  final String title;
+  final int? id;
   @override
   final String content;
   @override
-  final DateTime date;
+  @JsonKey(name: 'created_at')
+  final DateTime createdAt;
 
   @override
   String toString() {
-    return 'Diary(id: $id, title: $title, content: $content, date: $date)';
+    return 'Diary(id: $id, content: $content, createdAt: $createdAt)';
   }
 
   @override
@@ -175,14 +169,14 @@ class _$DiaryImpl implements _Diary {
         (other.runtimeType == runtimeType &&
             other is _$DiaryImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.title, title) || other.title == title) &&
             (identical(other.content, content) || other.content == content) &&
-            (identical(other.date, date) || other.date == date));
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, content, date);
+  int get hashCode => Object.hash(runtimeType, id, content, createdAt);
 
   /// Create a copy of Diary
   /// with the given fields replaced by the non-null parameter values.
@@ -200,23 +194,20 @@ class _$DiaryImpl implements _Diary {
 
 abstract class _Diary implements Diary {
   const factory _Diary({
-    final String? id,
-    required final String title,
+    final int? id,
     required final String content,
-    required final DateTime date,
+    @JsonKey(name: 'created_at') required final DateTime createdAt,
   }) = _$DiaryImpl;
 
   factory _Diary.fromJson(Map<String, dynamic> json) = _$DiaryImpl.fromJson;
 
-  // ID가 자동 생성(UUID 또는 BigInt)된다면 Nullable 혹은 선언을 포함해줍니다.
   @override
-  String? get id;
-  @override
-  String get title;
+  int? get id;
   @override
   String get content;
   @override
-  DateTime get date;
+  @JsonKey(name: 'created_at')
+  DateTime get createdAt;
 
   /// Create a copy of Diary
   /// with the given fields replaced by the non-null parameter values.

@@ -40,7 +40,7 @@ class SettingsScreen extends StatelessWidget {
             ),
           ),
           SliverPadding(
-            padding: const EdgeInsets.all(24.0).copyWith(bottom: 120),
+            padding: const EdgeInsets.all(24.0).copyWith(bottom: 160),
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 // Profile Section

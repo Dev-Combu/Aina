@@ -53,7 +53,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
           ),
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 24.0).copyWith(top: 20.0, bottom: 160.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
