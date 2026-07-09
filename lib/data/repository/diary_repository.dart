@@ -57,14 +57,18 @@ Future<void> saveDiaryEntry(Diary diary) async {
     }
   }
 
-  /// 다이어리 수정 (Update)
-  Future<void> updateDiaryEntry(String id, Diary diary) async {
+/// 다이어리 수정 (Update)
+  Future<void> updateDiaryEntry(int id, Diary diary) async {
     try {
       await _supabase
           .from('diaries')
-          .update(diary.toJson()) // 통째로 넘기거나 원하시는 필드만 Map으로 넘겨도 됩니다.
+          .update({
+            'content': diary.content,
+            'created_at': diary.createdAt.toIso8601String(),
+          }) 
           .eq('id', id);
     } catch (e) {
+      print('Supabase Update Error: $e'); 
       throw Exception('Error updating diary entry: $e');
     }
   }

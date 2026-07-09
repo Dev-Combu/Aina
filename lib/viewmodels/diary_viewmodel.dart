@@ -38,7 +38,7 @@ class DiaryViewmodel extends _$DiaryViewmodel {
 }
 
   //3. 일기 수정
-  Future<void> updateDiary(String id, Diary diary) async {
+  Future<void> updateDiary(int id, Diary diary) async {
     state = const AsyncValue.loading(); // UI에 로딩 스타트 전파
     state = await AsyncValue.guard(() async {
       final repo = ref.read(diaryRepositoryProvider);

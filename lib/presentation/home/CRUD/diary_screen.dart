@@ -108,7 +108,7 @@ class _DiaryScreenState extends ConsumerState<DiaryScreen> {
       final diary = Diary(content: content, createdAt: _selectedDate);
       await ref
           .read(diaryViewmodelProvider.notifier)
-          .updateDiary(widget.diaryId.toString(), diary);
+          .updateDiary(widget.diaryId!, diary);
 
       if (mounted) {
         Navigator.pop(context);

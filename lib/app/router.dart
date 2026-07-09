@@ -1,5 +1,5 @@
 import 'package:aina/presentation/calendar/calendar_screen.dart';
-import 'package:aina/presentation/home/CRUD/diary_sceen.dart';
+import 'package:aina/presentation/home/CRUD/diary_screen.dart';
 import 'package:aina/presentation/home/home_screen.dart';
 import 'package:aina/presentation/main/main_layout.dart';
 import 'package:aina/presentation/settings/settings_screen.dart';
