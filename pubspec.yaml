@@ -44,19 +44,23 @@ dependencies:
   riverpod_annotation: ^2.3.5
   freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
-  serverpod_flutter: ^3.4.11
+  logger: ^2.7.0
 
-  aina_serverpod_client:
-  # [개발용] 내 컴퓨터에서 실시간으로 개발할 때 (주석 풀고 사용)
-    path: ../Aina-Serverpod/aina_serverpod_client
-  # [개발용] GitHub에서 실시간으로 개발할 때 (주석 풀고 사용)
-    # git:
-    #   url: https://github.com/Dev-Combu/Aina-Serverpod.git
-    #   path: aina_serverpod_client
+
+  # Serverpod 이용하지 않고 supabase만 이용
+  # serverpod_flutter: ^3.4.11
+
+  # aina_serverpod_client:
+  # # [개발용] 내 컴퓨터에서 실시간으로 개발할 때 (주석 풀고 사용)
+  #   path: ../aina_serverpod/aina_serverpod_client
+  # # [개발용] GitHub에서 실시간으로 개발할 때 (주석 풀고 사용)
+  #   # git:
+  #   #   url: https://github.com/Dev-Combu/Aina-Serverpod.git
+  #   #   path: aina_serverpod_client
     
-  serverpod_auth_core_flutter: ^3.4.11
-  serverpod_auth_idp_flutter: ^3.4.11
-  serverpod_auth_email_flutter: ^3.4.11
+  # serverpod_auth_core_flutter: ^3.4.11
+  # serverpod_auth_idp_flutter: ^3.4.11
+  # serverpod_auth_email_flutter: ^3.4.11
 
 dev_dependencies:
   flutter_test:

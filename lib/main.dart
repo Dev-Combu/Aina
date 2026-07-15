@@ -1,14 +1,12 @@
 import 'package:aina/app/router.dart';
 import 'package:aina/app/theme.dart';
-import 'package:aina_serverpod_client/aina_serverpod_client.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:serverpod_auth_core_flutter/serverpod_auth_core_flutter.dart';
-import 'package:serverpod_flutter/serverpod_flutter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-late Client client;
+// serverpod 이용하지 않아서 주석 처리
+// late Client client;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,13 +20,15 @@ Future<void> main() async {
     anonKey: dotenv.env['SUPABASE_ANON_KEY']!,
   );
 
-  // 2. Client 초기화 (포트 8082 확인)
-  client = Client('http://localhost:8082/')
-    ..connectivityMonitor = FlutterConnectivityMonitor()
-    ..authSessionManager = FlutterAuthSessionManager();
 
-  // 3. 세션 초기화 완료 대기
-  await client.auth.initialize();
+  // serverpod 이용하지 않아서 주석 처리
+  // // 2. Client 초기화 (포트 8082 확인)
+  // client = Client('http://localhost:8082/')
+  //   ..connectivityMonitor = FlutterConnectivityMonitor()
+  //   ..authSessionManager = FlutterAuthSessionManager();
+
+  // // 3. 세션 초기화 완료 대기
+  // await client.auth.initialize();
 
   runApp(const ProviderScope(child: MyApp()));
 }
