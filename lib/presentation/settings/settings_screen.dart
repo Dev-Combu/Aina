@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -44,57 +45,62 @@ class SettingsScreen extends StatelessWidget {
             sliver: SliverList(
               delegate: SliverChildListDelegate([
                 // Profile Section
-                Container(
-                  padding: const EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.03),
-                        blurRadius: 15,
-                        offset: const Offset(0, 5),
-                      ),
-                    ],
-                  ),
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 30,
-                        backgroundColor: const Color(
-                          0xFFE8F0E5,
-                        ), // Soft pastel green
-                        child: const Icon(
-                          Icons.person_rounded,
-                          size: 36,
-                          color: Color(0xFF86B082),
+                InkWell(
+                  onTap: () {
+                    context.push('/profile'); // Navigate to the profile screen
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.03),
+                          blurRadius: 15,
+                          offset: const Offset(0, 5),
                         ),
-                      ),
-                      const SizedBox(width: 16),
-                      const Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              '사용자 님',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF4A4A4A),
-                              ),
-                            ),
-                            SizedBox(height: 4),
-                            Text(
-                              '소중한 기록이 자라나고 있어요 🌱',
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Color(0xFF8A8A8A),
-                              ),
-                            ),
-                          ],
+                      ],
+                    ),
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 30,
+                          backgroundColor: const Color(
+                            0xFFE8F0E5,
+                          ), // Soft pastel green
+                          child: const Icon(
+                            Icons.person_rounded,
+                            size: 36,
+                            color: Color(0xFF86B082),
+                          ),
                         ),
-                      ),
-                    ],
+                        const SizedBox(width: 16),
+                        const Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '사용자 님',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF4A4A4A),
+                                ),
+                              ),
+                              SizedBox(height: 4),
+                              Text(
+                                '소중한 기록이 자라나고 있어요 🌱',
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  color: Color(0xFF8A8A8A),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 const SizedBox(height: 32),

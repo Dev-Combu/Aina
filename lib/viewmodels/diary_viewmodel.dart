@@ -48,7 +48,7 @@ class DiaryViewmodel extends _$DiaryViewmodel {
   }
 
   // 4. 일기 삭제
-  Future<void> deleteDiary(String id) async {
+  Future<void> deleteDiary(int id) async {
     state = const AsyncValue.loading(); // UI에 로딩 스타트 전파
     state = await AsyncValue.guard(() async {
       final repo = ref.read(diaryRepositoryProvider);
