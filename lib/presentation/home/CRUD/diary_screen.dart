@@ -37,7 +37,7 @@ class _DiaryScreenState extends ConsumerState<DiaryScreen> {
   void initState() {
     super.initState();
     _contentController.text = widget.content ?? '';
-    _selectedDate = widget.date ?? DateTime.now();
+    _selectedDate = widget.date?.toLocal() ?? DateTime.now();
     _isEditing = widget.diaryId == null || widget.isWriting;
 
     if (_isEditing) {
@@ -76,7 +76,7 @@ class _DiaryScreenState extends ConsumerState<DiaryScreen> {
     setState(() => _isSaving = true);
 
     try {
-      final diary = Diary(userId: userId, content: content, createdAt: _selectedDate);
+      final diary = Diary(userId: userId, content: content, createdAt: _selectedDate.toUtc());
       await ref.read(diaryViewmodelProvider.notifier).addDiary(diary);
 
       if (mounted) {
@@ -109,7 +109,7 @@ class _DiaryScreenState extends ConsumerState<DiaryScreen> {
     setState(() => _isSaving = true);
 
     try {
-      final diary = Diary(userId: userId, content: content, createdAt: _selectedDate);
+      final diary = Diary(userId: userId, content: content, createdAt: _selectedDate.toUtc());
       await ref
           .read(diaryViewmodelProvider.notifier)
           .updateDiary(widget.diaryId!, diary);

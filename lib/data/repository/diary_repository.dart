@@ -69,7 +69,7 @@ class DiaryRepository {
           .from('diaries')
           .update({
             'content': diary.content,
-            'created_at': diary.createdAt.toIso8601String(),
+            'created_at': diary.createdAt.toUtc().toIso8601String(),
           })
           .eq('id', id);
     } catch (e) {

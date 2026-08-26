@@ -1,8 +1,6 @@
 import 'package:aina/presentation/home/CRUD/diary_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import 'package:aina/data/models/diary.dart';
 import 'package:aina/viewmodels/diary_viewmodel.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -98,10 +96,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         onTap: () {
                           showModalBottomSheet(
                             context: context,
-                            isScrollControlled:
-                                true,
-                            backgroundColor: Colors
-                                .transparent,
+                            isScrollControlled: true,
+                            backgroundColor: Colors.transparent,
                             builder: (context) {
                               return const DiaryScreen(isWriting: true);
                             },
@@ -238,24 +234,74 @@ class _HomeScreenState extends State<HomeScreen> {
                     sliver: SliverList(
                       delegate: SliverChildBuilderDelegate((context, index) {
                         final diary = diaries[index];
-                        return InkWell(
-                          onTap: () {
-                            showModalBottomSheet(
+                        return Dismissible(
+                          key: Key(diary.id.toString()),
+                          background: Container(
+                            color: Colors.red,
+                            alignment: Alignment.centerRight,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 20.0,
+                            ),
+                            child: const Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                            ),
+                          ),
+                          direction: DismissDirection.endToStart,
+                          confirmDismiss: (direction) async {
+                            return await showDialog(
                               context: context,
-                              isScrollControlled: true,
-                              backgroundColor: Colors.transparent,
-                              builder: (context) {
-                                return DiaryScreen(
-                                  content: diary.content,
-                                  date: diary.createdAt,
-                                  diaryId: diary.id,
-                                );
-                              },
+                              builder: (context) => AlertDialog(
+                                title: const Text('일기 삭제'),
+                                content: const Text('정말 이 일기를 삭제하시겠습니까?'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.of(
+                                      context,
+                                    ).pop(false), // 취소 (삭제 안 함)
+                                    child: const Text('취소'),
+                                  ),
+                                  TextButton(
+                                    onPressed: () => Navigator.of(
+                                      context,
+                                    ).pop(true), // 삭제 승인
+                                    child: const Text(
+                                      '삭제',
+                                      style: TextStyle(color: Colors.red),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             );
                           },
-                          child: _buildDiaryCard(
-                            date: _formatDate(diary.createdAt),
-                            preview: diary.content,
+                          onDismissed: (direction) {
+                            ref
+                                .read(diaryViewmodelProvider.notifier)
+                                .deleteDiary(diary.id!);
+
+                            ScaffoldMessenger.of(
+                              context,
+                            ).showSnackBar(SnackBar(content: Text('삭제되었습니다.')));
+                          },
+                          child: InkWell(
+                            onTap: () {
+                              showModalBottomSheet(
+                                context: context,
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                builder: (context) {
+                                  return DiaryScreen(
+                                    content: diary.content,
+                                    date: diary.createdAt,
+                                    diaryId: diary.id,
+                                  );
+                                },
+                              );
+                            },
+                            child: _buildDiaryCard(
+                              date: _formatDate(diary.createdAt.toLocal()),
+                              preview: diary.content,
+                            ),
                           ),
                         );
                       }, childCount: diaries.length),
