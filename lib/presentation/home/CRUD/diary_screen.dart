@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:aina/data/models/diary.dart';
 import 'package:aina/viewmodels/diary_viewmodel.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class DiaryScreen extends ConsumerStatefulWidget {
   final String? content;
@@ -29,11 +30,14 @@ class _DiaryScreenState extends ConsumerState<DiaryScreen> {
   bool _isSaving = false;
   bool _isEditing = false;
 
+  final supabase = Supabase.instance.client;
+  String get userId => supabase.auth.currentUser?.id ?? '';
+
   @override
   void initState() {
     super.initState();
     _contentController.text = widget.content ?? '';
-    _selectedDate = widget.date ?? DateTime.now();
+    _selectedDate = widget.date?.toLocal() ?? DateTime.now();
     _isEditing = widget.diaryId == null || widget.isWriting;
 
     if (_isEditing) {
@@ -72,7 +76,7 @@ class _DiaryScreenState extends ConsumerState<DiaryScreen> {
     setState(() => _isSaving = true);
 
     try {
-      final diary = Diary(content: content, createdAt: _selectedDate);
+      final diary = Diary(userId: userId, content: content, createdAt: _selectedDate.toUtc());
       await ref.read(diaryViewmodelProvider.notifier).addDiary(diary);
 
       if (mounted) {
@@ -105,7 +109,7 @@ class _DiaryScreenState extends ConsumerState<DiaryScreen> {
     setState(() => _isSaving = true);
 
     try {
-      final diary = Diary(content: content, createdAt: _selectedDate);
+      final diary = Diary(userId: userId, content: content, createdAt: _selectedDate.toUtc());
       await ref
           .read(diaryViewmodelProvider.notifier)
           .updateDiary(widget.diaryId!, diary);
@@ -154,7 +158,7 @@ class _DiaryScreenState extends ConsumerState<DiaryScreen> {
     try {
       await ref
           .read(diaryViewmodelProvider.notifier)
-          .deleteDiary(widget.diaryId.toString());
+          .deleteDiary(widget.diaryId!);
 
       if (mounted) {
         Navigator.pop(context);

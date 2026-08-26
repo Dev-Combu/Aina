@@ -22,6 +22,8 @@ Diary _$DiaryFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Diary {
   int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_id')
+  String? get userId => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
   DateTime get createdAt => throw _privateConstructorUsedError;
@@ -42,6 +44,7 @@ abstract class $DiaryCopyWith<$Res> {
   @useResult
   $Res call({
     int? id,
+    @JsonKey(name: 'user_id') String? userId,
     String content,
     @JsonKey(name: 'created_at') DateTime createdAt,
   });
@@ -63,6 +66,7 @@ class _$DiaryCopyWithImpl<$Res, $Val extends Diary>
   @override
   $Res call({
     Object? id = freezed,
+    Object? userId = freezed,
     Object? content = null,
     Object? createdAt = null,
   }) {
@@ -72,6 +76,10 @@ class _$DiaryCopyWithImpl<$Res, $Val extends Diary>
                 ? _value.id
                 : id // ignore: cast_nullable_to_non_nullable
                       as int?,
+            userId: freezed == userId
+                ? _value.userId
+                : userId // ignore: cast_nullable_to_non_nullable
+                      as String?,
             content: null == content
                 ? _value.content
                 : content // ignore: cast_nullable_to_non_nullable
@@ -96,6 +104,7 @@ abstract class _$$DiaryImplCopyWith<$Res> implements $DiaryCopyWith<$Res> {
   @useResult
   $Res call({
     int? id,
+    @JsonKey(name: 'user_id') String? userId,
     String content,
     @JsonKey(name: 'created_at') DateTime createdAt,
   });
@@ -116,6 +125,7 @@ class __$$DiaryImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? userId = freezed,
     Object? content = null,
     Object? createdAt = null,
   }) {
@@ -125,6 +135,10 @@ class __$$DiaryImplCopyWithImpl<$Res>
             ? _value.id
             : id // ignore: cast_nullable_to_non_nullable
                   as int?,
+        userId: freezed == userId
+            ? _value.userId
+            : userId // ignore: cast_nullable_to_non_nullable
+                  as String?,
         content: null == content
             ? _value.content
             : content // ignore: cast_nullable_to_non_nullable
@@ -143,6 +157,7 @@ class __$$DiaryImplCopyWithImpl<$Res>
 class _$DiaryImpl implements _Diary {
   const _$DiaryImpl({
     this.id,
+    @JsonKey(name: 'user_id') this.userId,
     required this.content,
     @JsonKey(name: 'created_at') required this.createdAt,
   });
@@ -153,6 +168,9 @@ class _$DiaryImpl implements _Diary {
   @override
   final int? id;
   @override
+  @JsonKey(name: 'user_id')
+  final String? userId;
+  @override
   final String content;
   @override
   @JsonKey(name: 'created_at')
@@ -160,7 +178,7 @@ class _$DiaryImpl implements _Diary {
 
   @override
   String toString() {
-    return 'Diary(id: $id, content: $content, createdAt: $createdAt)';
+    return 'Diary(id: $id, userId: $userId, content: $content, createdAt: $createdAt)';
   }
 
   @override
@@ -169,6 +187,7 @@ class _$DiaryImpl implements _Diary {
         (other.runtimeType == runtimeType &&
             other is _$DiaryImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
@@ -176,7 +195,7 @@ class _$DiaryImpl implements _Diary {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, content, createdAt);
+  int get hashCode => Object.hash(runtimeType, id, userId, content, createdAt);
 
   /// Create a copy of Diary
   /// with the given fields replaced by the non-null parameter values.
@@ -195,6 +214,7 @@ class _$DiaryImpl implements _Diary {
 abstract class _Diary implements Diary {
   const factory _Diary({
     final int? id,
+    @JsonKey(name: 'user_id') final String? userId,
     required final String content,
     @JsonKey(name: 'created_at') required final DateTime createdAt,
   }) = _$DiaryImpl;
@@ -203,6 +223,9 @@ abstract class _Diary implements Diary {
 
   @override
   int? get id;
+  @override
+  @JsonKey(name: 'user_id')
+  String? get userId;
   @override
   String get content;
   @override

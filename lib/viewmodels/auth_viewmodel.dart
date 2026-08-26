@@ -18,14 +18,14 @@ class AuthViewmodel extends _$AuthViewmodel {
     // 2. AsyncValue.guard가 내부적으로 try-catch를 돌고 결과를 state에 반영해 줍니다.
     state = await AsyncValue.guard(() async {
       final authRepository = ref.read(authRepositoryProvider);
-      await authRepository.signInWithEmail(email, password);
+      await authRepository.signUpNewUser(email, password);
 
-      logger.i('User signed in: $email'); // 💡 수정: 성공은 Info 로그로
+      logger.i('User signed up: $email'); // 💡 수정: 성공은 Info 로그로
     });
 
     // 만약 에러가 발생했다면 AsyncValue.guard가 알아서 state를 AsyncError로 만들어 줍니다.
     if (state.hasError) {
-      logger.i('Error signing in: ${state.error}');
+      logger.i('Error signing up: ${state.error}');
     }
   }
 

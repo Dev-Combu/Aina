@@ -45,6 +45,8 @@ dependencies:
   freezed_annotation: ^2.4.4
   json_annotation: ^4.9.0
   logger: ^2.7.0
+  sign_in_with_apple: ^7.0.1
+  crypto: ^3.0.7
 
 
   # Serverpod 이용하지 않고 supabase만 이용

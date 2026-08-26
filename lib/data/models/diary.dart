@@ -9,6 +9,7 @@ part 'diary.g.dart';
 class Diary with _$Diary {
   const factory Diary({
     int? id, 
+    @JsonKey(name: 'user_id') String? userId,
     required String content,
     @JsonKey(name: 'created_at') required DateTime createdAt,
   }) = _Diary;

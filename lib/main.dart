@@ -4,12 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 // serverpod 이용하지 않아서 주석 처리
 // late Client client;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // 로케일 초기화 (한글 설정)
+  await initializeDateFormatting('ko_KR', null);
 
   // 환경 변수 로드 (.env)
   await dotenv.load(fileName: ".env");
